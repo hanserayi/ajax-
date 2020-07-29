@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>发送请求</button>
+    <button>取消请求</button>
+    <script>
+        const btns = document.querySelectorAll('button')
+        let xhr = null
+        btns[0].onclick = function(){
+            xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://localhost:8000/delay')
+            xhr.send();
+        }
+        //取消请求的回调函数 注意需要将xhr放在外侧
+        btns[1].onclick = function(){
+            xhr.abort()
+        }
+    </script>
+</body>
+</html>

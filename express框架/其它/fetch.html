@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>ajax请求</button>
+    <script>
+        const btn = document.getElementsByTagName('button')
+        btn[0].onclick = function(){
+            fetch('http://localhost:8000/fetch-server',{
+                //请求方法
+                method:'POST',
+                //请求头
+                headers:{
+                    name:'hanser'
+                },
+                //请求体
+                body: 'name=admin&pd=admin'
+            }).then(Response=>{
+                console.log(Response)
+                return Response.text()
+            }).then(Response=>{
+                console.log(Response)
+            })
+        }
+    </script>
+</body>
+</html>

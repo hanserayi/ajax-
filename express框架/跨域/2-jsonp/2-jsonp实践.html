@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    用户名：<input type="text" id="username">
+    <p></p>
+    <script>
+        const input = document.getElementById('username')
+        const p = document.querySelectorAll('p')[0]
+
+        function handle(data){
+            input.style.border = "solid 1px $f00"
+            //修改p标签的提示文本
+            p.innerHTML = data.msg
+        }
+        //失去焦点事件
+        input.onblur = function(){
+            let username = this.value
+            //向服务端发送请求
+            //1 设置script标签
+            const script = document.createElement('script')
+            //2 设置标签的src属性
+            script.src = 'http://localhost:8000/check-username'
+            //3 将script插入文档中
+            document.body.appendChild(script)
+
+        }
+    </script>
+</body>
+</html>

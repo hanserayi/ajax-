@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #78a;
+        }
+    </style>
+</head>
+<body>
+    <div id="res"></div>   
+    <script>
+        function handle(data){
+            const res = document.getElementById('res')
+            res.innerHTML = data.name
+        }
+    </script>
+    <!-- <script src="http://127.0.0.1:5500/express%E6%A1%86%E6%9E%B6/%E8%B7%A8%E5%9F%9F/2-jsonp/app.js"></script> -->
+    <script src="http://localhost:8000/jsonp-server"></script>
+
+</body>
+</html>

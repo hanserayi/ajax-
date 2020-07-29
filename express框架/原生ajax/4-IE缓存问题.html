@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 150px;
+            border: 1px solid #cd6969;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送请求</button>
+    <div id="res"></div>
+    <script>
+        const btn = document.getElementsByTagName('button')[0]
+        const result = document.getElementById('res')
+        btn.addEventListener('click', function(){
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://localhost:8000/ie?t='+Date.now())
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status>=200 && xhr.status<300){
+                        result.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

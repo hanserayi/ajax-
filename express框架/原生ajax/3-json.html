@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 150px;
+            border: 1px solid #cd6969;
+        }
+    </style>
+</head>
+<body>
+    <div id="res"></div>
+    <script>
+        const result = document.getElementById('res')
+        window.onkeydown = function(){
+            const xhr = new XMLHttpRequest()
+            //设置响应体数据的类型
+            xhr.responseType = 'json'
+            xhr.open('GET', 'http://localhost:8000/json-server')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status>=200 && xhr.status<300){
+                        console.log(xhr.response)
+
+                        //手动对数据进行转换
+                        // let data = JSON.parse(xhr.response)
+                        // console.log(data)
+
+                        //自动转换
+                        console.log(xhr.response)
+                        result.innerHTML = xhr.response.name
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

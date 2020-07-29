@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 160px;
+            border: 1px solid #cd6969;
+        }
+    </style>
+</head>
+<body>
+    <!-- 需求：点击发送请求，将相应信息返回显示至ajax中 页面不刷新 -->
+    <button>点击发送请求</button>
+    <div id="res"></div>
+    <script>
+        const btn = document.getElementsByTagName('button')
+        const result = document.getElementById('res')
+        btn[0].onclick = function (){
+            //创建对象
+            const xhr = new XMLHttpRequest()
+            //设置请求方法和url
+            xhr.open('GET', 'http://localhost:8000/server')
+            //发送
+            xhr.send()
+            //事件绑定 处理服务端返回的结果
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState === 4){ //服务端返回了所有结果
+                    if(xhr.status >= 200 && xhr.readyState<=300){  //2开头的都表示成功
+                        //处理结果
+                        console.log(xhr.status) //状态码
+                        console.log(xhr.statusText) //状态字符串
+                        console.log(xhr.getAllResponseHeaders) //所有响应头
+                        console.log(xhr.response) //响应体
+                        result.innerHTML = xhr.response
+                    }else{
+
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

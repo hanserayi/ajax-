@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #res{
+            width: 200px;
+            height: 100px;
+            border: 1px solid #90b;
+        }
+    </style>
+</head>
+<body>
+    <button>发送请求</button>
+    <div id="res"></div>
+    <script>
+        const btn = document.getElementsByTagName('button')
+        btn[0].onclick = function(){
+            const x = new XMLHttpRequest()
+            x.open('GET', "http://localhost:8000/cors-server")
+            x.send()
+            x.onreadystatechange = function(){
+                if(x.readyState === 4){
+                    if(x.status>=200 && x.status<300){
+                        console.log(x.response)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

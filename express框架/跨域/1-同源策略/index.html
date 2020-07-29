@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hanser</h1>
+    <button>点击获取用户数据</button>
+    <script>
+        const btn = document.getElementsByTagName('button')
+        btn[0].onclick = function(){
+            const x = new XMLHttpRequest()
+            //因为满足同源策略，所以url可以简写
+            x.open('GET', '/data')
+            x.send()
+            x.onreadystatechange = function(){
+                if(x.readyState === 4){
+                    if(x.status>=200 && x.status<300){
+                        console.log(x.response)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

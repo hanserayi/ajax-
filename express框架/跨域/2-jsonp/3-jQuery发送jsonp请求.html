@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 150px;
+            border: 1px solid #bfa;
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <button>点击发送jsonp请求</button>
+    <div id="res"></div>
+    <script>
+        $('button').eq(0).click(function(){
+            $.getJSON('http://localhost:8000/jquery-jsonp-server?callback=?', function(data){
+                $('#res').html(`
+                姓名：${data.name},
+                年龄：${data.age}`)
+            })
+
+        })
+    </script>
+</body>
+</html>
